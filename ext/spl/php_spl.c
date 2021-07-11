@@ -852,7 +852,11 @@ PHPAPI zend_string *php_spl_object_hash(zval *obj) /* {{{*/
 		SPL_G(hash_mask_init) = 1;
 	}
 
+	/**/
 	hash_handle   = SPL_G(hash_mask_handle)^(intptr_t)Z_OBJ_HANDLE_P(obj);
+	/*/
+    hash_handle   = SPL_G(hash_mask_handle)^(intptr_t)Z_OBJ_UNIQUE_ID_P(obj);
+	/**/
 	hash_handlers = SPL_G(hash_mask_handlers);
 
 	return strpprintf(32, "%016zx%016zx", hash_handle, hash_handlers);

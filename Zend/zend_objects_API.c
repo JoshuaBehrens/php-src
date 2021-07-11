@@ -30,6 +30,9 @@ ZEND_API void ZEND_FASTCALL zend_objects_store_init(zend_objects_store *objects,
 	objects->top = 1; /* Skip 0 so that handles are true */
 	objects->size = init_size;
 	objects->free_list_head = -1;
+	/*
+	objects->unique_object_id = 1;
+	 */
 	memset(&objects->object_buckets[0], 0, sizeof(zend_object*));
 }
 
@@ -133,6 +136,7 @@ static ZEND_COLD zend_never_inline void ZEND_FASTCALL zend_objects_store_put_col
 	EG(objects_store).size = new_size;
 	handle = EG(objects_store).top++;
 	object->handle = handle;
+	// object->unique = EG(objects_store).unique_object_id++;
 	EG(objects_store).object_buckets[handle] = object;
 }
 

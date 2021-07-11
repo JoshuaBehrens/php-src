@@ -373,6 +373,7 @@ struct _zend_object {
 	const zend_object_handlers *handlers;
 	HashTable        *properties;
 	zval              properties_table[1];
+    intptr_t          unique;
 };
 
 struct _zend_resource {
@@ -709,6 +710,9 @@ static zend_always_inline uint32_t zval_gc_info(uint32_t gc_type_info) {
 
 #define Z_OBJ_HANDLE(zval)          (Z_OBJ((zval)))->handle
 #define Z_OBJ_HANDLE_P(zval_p)      Z_OBJ_HANDLE(*(zval_p))
+
+#define Z_OBJ_UNIQUE_ID(zval)       (Z_OBJ((zval)))->unique
+#define Z_OBJ_UNIQUE_ID_P(zval_p)   Z_OBJ_UNIQUE_ID(*(zval_p))
 
 #define Z_OBJCE(zval)				(Z_OBJ(zval)->ce)
 #define Z_OBJCE_P(zval_p)			Z_OBJCE(*(zval_p))

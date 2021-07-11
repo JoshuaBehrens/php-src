@@ -47,6 +47,9 @@ typedef struct _zend_objects_store {
 	uint32_t top;
 	uint32_t size;
 	int free_list_head;
+	/*
+    intptr_t unique_object_id;
+    */
 } zend_objects_store;
 
 /* Global store handling functions */
